@@ -1,5 +1,6 @@
 import {
   Anchor,
+  AppLayout,
   Button,
   H1,
   Paragraph,
@@ -23,42 +24,52 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
   })
 
   return (
-    <YStack flex={1} justify="center" items="center" gap="$8" p="$4" bg="$background">      
-      <XStack
-        position="absolute"
-        width="100%"
-        t="$6"
-        gap="$6"
-        justify="center"
-        flexWrap="wrap"
-        $sm={{ position: 'relative', t: 0 }}
-      >
-        {Platform.OS === 'web' && (
-          <>
-            <SwitchRouterButton pagesMode={pagesMode} />
-            <SwitchThemeButton />
-          </>
-        )}
-      </XStack>
+    <AppLayout title="BreakLog">
+      <YStack flex={1} justify="center" items="center" gap="$8" p="$4">      
+        <XStack
+          position="absolute"
+          width="100%"
+          t="$6"
+          gap="$6"
+          justify="center"
+          flexWrap="wrap"
+          $sm={{ position: 'relative', t: 0 }}
+        >
+          {Platform.OS === 'web' && (
+            <>
+              <SwitchRouterButton pagesMode={pagesMode} />
+              <SwitchThemeButton />
+            </>
+          )}
+        </XStack>
 
-      <YStack gap="$4">
-        <H1 text="center" color="$color12">
-          Welcome to Tamagui.
-        </H1>
-        <Paragraph color="$color10" text="center">
-          Here's a basic starter to show navigating from one screen to another.
-        </Paragraph>
-        <Separator />
-        <Paragraph text="center">
-          This screen uses the same code on Next.js and React Native.
-        </Paragraph>
-        <Separator />
+        <YStack gap="$4" alignItems="center">
+          <H1 text="center" color="$color12">
+            Welcome to BreakLog.
+          </H1>
+          <Paragraph color="$color10" text="center" maxWidth={400}>
+            Track your breaks, improve your productivity, and maintain a healthy work-life balance.
+          </Paragraph>
+          <Separator />
+          <Paragraph text="center" color="$color11">
+            This app uses the same code on Next.js and React Native.
+          </Paragraph>
+          <Separator />
+        </YStack>
+
+        <YStack gap="$4" alignItems="center">
+          <Button {...linkProps} size="$5" theme="blue">
+            View Profile
+          </Button>
+          
+          <Button size="$4" variant="outlined">
+            Start Break Timer
+          </Button>
+        </YStack>
+
+        <SheetDemo />
       </YStack>
-
-      <Button {...linkProps}>Link to user</Button>
-
-      <SheetDemo />
-    </YStack>
+    </AppLayout>
   )
 }
 
